@@ -13,7 +13,7 @@ import android.widget.EditText;
  */
 public class RegActivity extends AppCompatActivity {
     /** Поле Менеджера базы данных */
-    static DBManager dbManager;
+    static DBManager dbManagerж;
     /** Поля дизайна */
     EditText mail;
     EditText name1;
