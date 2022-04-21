@@ -8,7 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 /**
  * Класс описания менеджера, для работы с базами данных
- * @autor Попов Кирилл
+ * @autor Пустовалов Данил
  */
 public class DBManager {
     /** Поле контекста */
@@ -38,8 +38,8 @@ public class DBManager {
      * Функция вставления значений в базу данных
      * @return void
      */
-    void addResult(String username, String mail) {
-        db.execSQL("INSERT INTO RESULTS VALUES ('" + username + "', " + mail
+    void addResult(String username, String city) {
+        db.execSQL("INSERT INTO RESULTS VALUES ('" + username + "', " + city
                 + ");");
     }
     /**
@@ -52,7 +52,7 @@ public class DBManager {
         boolean hasMoreData = cursor.moveToFirst();
         while (hasMoreData) {
             String name = cursor.getString(cursor.getColumnIndex("USERNAME"));
-            String mail = cursor.getString(cursor.getColumnIndex("MAIL"));
+            String mail = cursor.getString(cursor.getColumnIndex("CITY"));
             data.add(new User(name, mail));
             hasMoreData = cursor.moveToNext();
         }
@@ -63,6 +63,6 @@ public class DBManager {
      * @return void
      */
     private void createTablesIfNeedBe() {
-        db.execSQL("CREATE TABLE IF NOT EXISTS RESULTS (USERNAME TEXT, MAIL TEXT);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS RESULTS (USERNAME TEXT, CITY TEXT);");
     }
 }

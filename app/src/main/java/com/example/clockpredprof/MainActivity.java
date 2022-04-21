@@ -124,14 +124,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         handler.postDelayed(r, 1000);
         button.setOnClickListener(this);
         Button toreg = findViewById(R.id.ToReg);
-//        toreg.setOnClickListener(new View.OnClickListener() {
-//            /** При нажитии на кнопку */
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), RegActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        toreg.setOnClickListener(new View.OnClickListener() {
+           /** При нажитии на кнопку */
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegActivity.class);
+                startActivity(intent);
+           }
+        });
     }
     /**
      * Функция получения значения поля {@link MainActivity#battery}

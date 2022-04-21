@@ -2,20 +2,20 @@ package com.example.clockpredprof;
 
 /**
  * Класс продукции со свойствами <b>maker</b> и <b>price</b>.
- * @autor Попов Кирилл
+ * @autor Пустовалов Данил
  */
 public class User {
     /** Поле имени пользователя */
     String name;
     /** Поле почты пользователя */
-    String mail;
+    String city;
     /**
      * Конструктор - создание нового объекта с определенными значениями
      * @param name - имя
-     * @param mail - почта
+     * @param city - почта
      */
-    User(String name, String mail) {
+    User(String name, String city) {
         this.name = name;
-        this.mail = mail;
+        this.city = city;
     }
 }
