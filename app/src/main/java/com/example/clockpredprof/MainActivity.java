@@ -22,6 +22,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.clockpredprof.Weather.WeatherInWorld;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * Класс главного экрана приложения.
  * @autor Пустовалов Данил
@@ -54,6 +62,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         time = new Time();
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://covid-193.p.rapidapi.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WeatherInterface service = retrofit.create(WeatherInterface.class);
+        Call<WeatherInWorld> call = service.covidHistory( "Moscow");
 
 
         SensorEventListener listenerLight = new SensorEventListener() {
