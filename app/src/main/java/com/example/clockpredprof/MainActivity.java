@@ -17,12 +17,17 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.clockpredprof.Weather.Main;
+import com.example.clockpredprof.Weather.Weather;
 import com.example.clockpredprof.Weather.WeatherInWorld;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,8 +73,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         WeatherInterface service = retrofit.create(WeatherInterface.class);
-        Call<WeatherInWorld> call = service.covidHistory( "Moscow");
+        Call<WeatherInWorld> call = service.weatherInWorld("Moscow");
+        call.enqueue(new Callback<WeatherInWorld>() {
+            @Override
+            public void onResponse(Call<WeatherInWorld> call, Response<WeatherInWorld> response) {
+                WeatherInWorld weatherInWorld = response.body();
+                if (weatherInWorld != null) {
+                    Main r =  weatherInWorld.getMain();
+                    //if (r.size() > 0)
+                        Log.d("Weather", r.getTemp() + r.getHumidity()+ r.getPressure()+"");
+                }
+            }
 
+            @Override
+            public void onFailure(Call<WeatherInWorld> call, Throwable t) {
+
+            }
+        });
 
         SensorEventListener listenerLight = new SensorEventListener() {
             TextView timeTV = findViewById(R.id.Time);
