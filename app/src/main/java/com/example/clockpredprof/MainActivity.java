@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 WeatherInWorld weatherInWorld = response.body();
                 if (weatherInWorld != null) {
                     Main r =  weatherInWorld.getMain();
-                    //if (r.size() > 0)
+                    /*if (r.size() > 0)*/
                         Log.d("Weather", r.getTemp() + r.getHumidity()+ r.getPressure() + "");
                 }
             }
