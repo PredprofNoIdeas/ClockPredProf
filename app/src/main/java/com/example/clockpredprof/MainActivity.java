@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://covid-193.p.rapidapi.com/")
+                .baseUrl("https://community-open-weather-map.p.rapidapi.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         WeatherInterface service = retrofit.create(WeatherInterface.class);
@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 WeatherInWorld weatherInWorld = response.body();
                 if (weatherInWorld != null) {
                     Main r =  weatherInWorld.getMain();
-                    /*if (r.size() > 0)*/
-                        Log.d("Weather", r.getTemp() + r.getHumidity()+ r.getPressure() + "");
+                    Log.d("Weather", r.getTemp() + r.getHumidity()+ r.getPressure() + "");
                 }
+                else Log.d("ERROR", "null");
             }
 
             @Override

@@ -39,7 +39,7 @@ public class DBManager {
      * @return void
      */
     void addResult(String username, String city) {
-        db.execSQL("INSERT INTO RESULTS VALUES ('" + username + "', " + city
+        db.execSQL("INSERT INTO RESULTS VALUES ('" + username + "', " + "'"+ city +"'"
                 + ");");
     }
     /**
