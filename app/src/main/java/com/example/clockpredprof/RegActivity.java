@@ -50,6 +50,7 @@ public class RegActivity extends AppCompatActivity {
                 dbManager.addResult(RegActivity.this.name1.getText().toString(),
                         RegActivity.this.city.getText().toString());
                 Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("name", name1.getText()+"");
                 startActivity(intent);
             }
         });
@@ -58,20 +59,19 @@ public class RegActivity extends AppCompatActivity {
 
 
         SensorEventListener listenerLight = new SensorEventListener() {
-            EditText userName = findViewById(R.id.NameForReg);
-            TextView City = findViewById(R.id.City);
+
             /** При изменении показателей сенсора */
             @Override
             public void onSensorChanged(SensorEvent event) {
                 if (event.values[0] > 1000) {
                     layout.setBackgroundColor(Color.parseColor("#B6B5B5"));
-                    userName.setTextColor(Color.parseColor("#1E1E1E"));
-                    City.setTextColor(Color.parseColor("#1E1E1E"));
+                    name1.setTextColor(Color.parseColor("#1E1E1E"));
+                    city.setTextColor(Color.parseColor("#1E1E1E"));
 
                 } else {
                     layout.setBackgroundColor(Color.parseColor("#1E1E1E"));
-                    userName.setTextColor(color);
-                    City.setTextColor(color);
+                    name1.setTextColor(color);
+                    city.setTextColor(color);
                 }
             }
 

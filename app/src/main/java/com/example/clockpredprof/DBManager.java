@@ -39,8 +39,7 @@ public class DBManager {
      * @return void
      */
     void addResult(String username, String city) {
-        db.execSQL("INSERT INTO RESULTS VALUES ('" + username + "', " + city
-                + ");");
+        db.execSQL("INSERT INTO RESULTS VALUES ('" + username  +"','"+city+"');");
     }
     /**
      * Функция получения всех значений базы данных
@@ -57,6 +56,17 @@ public class DBManager {
             hasMoreData = cursor.moveToNext();
         }
         return data;
+    }
+    String getCity(String name){
+        String[] forDb=new String[1];
+        forDb[0]=name;
+        Cursor cursor = db.rawQuery("SELECT CITY FROM RESULTS WHERE USERNAME=?;", forDb);
+        String result="";
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndex("CITY"));
+        }
+        cursor.close();
+        return result;
     }
     /**
      * Функция создания базы данных

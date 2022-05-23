@@ -12,53 +12,37 @@
         android:id="@+id/Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textColor="#DDDDDD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.455" />
-
-    <Button
-        android:id="@+id/Photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Фото"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805" />
+        app:layout_constraintVertical_bias="0.463" />
 
     <TextView
         android:id="@+id/Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textColor="#DDDDDD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintVertical_bias="0.377" />
 
     <TextView
         android:id="@+id/Battery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textColor="#DDDDDD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintVertical_bias="0.553" />
 
     <Button
         android:id="@+id/ToReg"
@@ -71,5 +55,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.944" />
+
+    <TextView
+        android:id="@+id/hum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Влажность:"
+        android:textColor="#DDDDDD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06" />
+
+    <TextView
+        android:id="@+id/press"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Давление:"
+        android:textColor="#DDDDDD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Температура:"
+        android:textColor="#DDDDDD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="263dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
