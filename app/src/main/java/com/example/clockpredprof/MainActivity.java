@@ -36,7 +36,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @autor Пустовалов Данил
  */
 public class MainActivity extends AppCompatActivity  {
+    /** Поля для реализации показа погоды */
     private DBManager dbManager;
+    String city;
+    String name;
     /** Поле для реализации времени */
     Time time;
     Handler handler;
@@ -49,8 +52,7 @@ public class MainActivity extends AppCompatActivity  {
     SensorManager sensorManager;
     /** Поля для дизайна */
 
-    String city;
-    String name;
+
 
     ConstraintLayout layout;
     @ColorInt
