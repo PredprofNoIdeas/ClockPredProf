@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity  {
         }
         setContentView(R.layout.activity_main);
 
+        dbManager = DBManager.getInstance(this);
+
         TextView hum=findViewById(R.id.hum);
         TextView temp= findViewById(R.id.temp);
         TextView press= findViewById(R.id.press);
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity  {
         time = new Time();
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-
+        /** Реализация ретрофита */
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://covid-193.p.rapidapi.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -101,11 +103,12 @@ public class MainActivity extends AppCompatActivity  {
                 Log.d("RESPONSE", response.body()+"");
                 if (weatherInWorld != null) {
                     Main r =  weatherInWorld.getMain();
-                    humidity[0] ="Влажность: "+r.getHumidity();
-                    pressure[0] ="Давление: "+r.getPressure();
+                    humidity[0] ="Влажность: "+r.getHumidity()+"%";
+                    pressure[0] ="Давление: "+Math.round(r.getPressure()*100/133.3);
+                    String t= String.format("%.1f", r.getTemp());
                     if(r.getTemp()>0) {
-                        temperature[0] = "Температура: +" + r.getTemp();
-                    } else temperature[0] = "Температура: -" + r.getTemp();
+                        temperature[0] = "Температура: +" + t;
+                    } else temperature[0] = "Температура: -" + t;
                     Log.d("Weather", "Temp: "+r.getTemp()+"\nHumidity:" + r.getHumidity()+"\nPressure:"+ r.getPressure() + "");
                 }
             }
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity  {
             }
         };
         sensorManager.registerListener(listenerLight, light, sensorManager.SENSOR_DELAY_NORMAL);
-
+        /** установка значений для погоды */
         r=new Runnable() {
             @Override
             public void run() {
@@ -198,7 +201,7 @@ public class MainActivity extends AppCompatActivity  {
         };
         handler = new Handler();
         handler.postDelayed(run, 1000);
-        handler.postDelayed(r,15000);
+        handler.postDelayed(r,1000);
         Button toreg = findViewById(R.id.ToReg);
         toreg.setOnClickListener(new View.OnClickListener() {
            /** При нажитии на кнопку */
@@ -210,7 +213,7 @@ public class MainActivity extends AppCompatActivity  {
         });
     }
     /**
-     * Функция получения значения поля {@link MainActivity#battery}
+     * Метод получения значения поля {@link MainActivity#battery}
      * @return возвращает показатель баттареи смартфона
      */
     public float getBatteryLevel() {

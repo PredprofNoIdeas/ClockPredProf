@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 /**
  * Класс описания менеджера, для работы с базами данных
  * @autor Пустовалов Данил
@@ -14,8 +16,8 @@ public class DBManager {
     /** Поле контекста */
     private Context context;
     /** Поле название базы данных */
-    private String DB_NAME = "game.db";
-    /** Поле базыданных */
+    private String DB_NAME = "users.db";
+    /** Поле базы данных */
     private SQLiteDatabase db;
     private static DBManager dbManager;
 
@@ -27,7 +29,7 @@ public class DBManager {
     }
     /**
      * Конструктор - создание нового объекта и базы данных
-     * @param context - контекст активити или фрагмента
+     * @param context - контекст активности или фрагмента
      */
     private DBManager(Context context) {
         this.context = context;
@@ -35,14 +37,14 @@ public class DBManager {
         createTablesIfNeedBe();
     }
     /**
-     * Функция вставления значений в базу данных
+     * Метод вставления значений в базу данных
      * @return void
      */
     void addResult(String username, String city) {
         db.execSQL("INSERT INTO RESULTS VALUES ('" + username  +"','"+city+"');");
     }
     /**
-     * Функция получения всех значений базы данных
+     * Метод получения всех значений базы данных
      * @return ArrayList со значениями
      */
     ArrayList<User> getAllResults() {
@@ -57,10 +59,14 @@ public class DBManager {
         }
         return data;
     }
+    /**
+     * Метод, возвращающий город по имени пользователя
+     * @return String
+     */
     String getCity(String name){
-        String[] forDb=new String[1];
-        forDb[0]=name;
-        Cursor cursor = db.rawQuery("SELECT CITY FROM RESULTS WHERE USERNAME=?;", forDb);
+
+        String query = "SELECT CITY FROM RESULTS WHERE USERNAME=?";
+        Cursor cursor= db.rawQuery(query, new String[]{ name });
         String result="";
         if (cursor.moveToFirst()) {
             result = cursor.getString(cursor.getColumnIndex("CITY"));
@@ -69,10 +75,19 @@ public class DBManager {
         return result;
     }
     /**
-     * Функция создания базы данных
+     * Метод удаления данных из базы
+     * @return void
+     */
+    public void removeAll()
+    {
+        db.delete("RESULTS", null, null);
+    }
+    /**
+     * Метод создания базы данных
      * @return void
      */
     private void createTablesIfNeedBe() {
         db.execSQL("CREATE TABLE IF NOT EXISTS RESULTS (USERNAME TEXT, CITY TEXT);");
     }
+
 }
